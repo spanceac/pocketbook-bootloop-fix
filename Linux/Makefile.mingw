@@ -1,0 +1,9 @@
+
+DIRS = dicts serial
+build-all-dirs: $(DIRS)
+$(DIRS)::
+	$(MAKE) -C $@ -f Makefile.mingw
+
+clean:
+	$(MAKE) -C dicts -f Makefile.mingw clean
+	$(MAKE) -C serial -f Makefile.mingw clean

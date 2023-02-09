@@ -1,0 +1,22 @@
+
+TARGET          = serial.exe
+SOURCES         = serial.c
+HEADERS         = serial.h
+OBJECTS         = $(SOURCES:%.c=%.o)
+
+CC              = gcc
+#CFLAGS          = -g -O0 -Wall -W -Wshadow -Wno-unused-parameter -Wno-unused-result
+CFLAGS          = -O2 -Wall -W -Wshadow -Wno-unused-parameter -Wno-unused-result
+LDFLAGS         = -Wl,-s -mconsole -municode
+LIBS            = 
+
+%.o: %.c $(HEADERS)
+	$(CC) -c $*.c $(CFLAGS)
+
+all: $(OBJECTS)
+	$(CC) -o $(TARGET) $(LDFLAGS) $(OBJECTS) $(LIBS)
+
+clean:
+	DEL /F *.o $(TARGET)
+
+.PHONY: all clean
